@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="assessment.css">
+</head>
+<body>
+    <div class="jumbotron text-center"><h3>MENU<h3></div>
+        <div class="row">
+        </div>
+                   <div class="col-md-4">
+                        <div class="thumbnail" style="width:400px">
+                            <img src="" alt="Card image" style="width:100%" id="OrderPageItem">
+                            <div class="card-body">
+                            <h4 class="card-title" id="ItemName"></h4>
+                            <p class="card-text" id="ItemPrice"></p>
+                            <button class="button b1" onclick="toggleText()" id="order">ORDER</button>
+                            <form id="form" style="display: none;">
+                                <div>Name <input type="text" name="name" placeholder="Your Name Here" required></div>
+                                <div>Contact <input type="number" name="contact" required placeholder="Contact Details" required></div>
+                                <div>Address <input type="text" name="address" required placeholder="Contact Details" required></div>
+                                <div>
+                                <a href="assessment.html">
+                                    <button type="submit" id="submitForm"  form="form1" value="Submit">Submit</button>
+                                </a>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        var queryString = new Array();
+    $(function () {
+        if (queryString.length == 0) {
+            if (window.location.search.split('?').length > 1) {
+                var params = window.location.search.split('?')[1].split('&');
+                console.log(params)
+                value = params[0].replace('name=', '')
+                values = value.split("-")
+                itemName = values.slice(0, -1).join(' ').toUpperCase();
+                document.getElementById('ItemName').innerHTML = itemName;
+                itemPrice = values.slice(-1)[0]
+                document.getElementById('ItemPrice').innerHTML = '₹' +itemPrice;
+                imgName =  values.slice(0, -1).join('-') + '.jpg'
+                document.getElementById('OrderPageItem').setAttribute('src', imgName);
+                console.log('images/'+imgName)
+                //console.log(elements.join(''));
+                console.log(values)
+                for (var i = 0; i < params.length; i++) {
+                    var key = params[i].split('=')[0];
+                    var value = decodeURIComponent(params[i].split('=')[1]);
+                    queryString[key] = value;
+                }
+            }
+        }
+        console.log(value)
+    });
+                    </script>
+
+    <script src="index.js"></script>
+        
+</body>
+</html>
